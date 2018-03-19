@@ -1,6 +1,6 @@
 # CWP Dash CLI
 
-This is a command line interface tool for interacting with the NZ Common Web Platform Dash API. The primary aim of this tool is to be supported easily on linux hosts without additional packages having being installed. While it could be implemented easily in many different frameworks/languages, it's written in Python for the simple reason that **most** linux servers support python out of the box. Where possible, we've used no external libraries and only core Python modules.
+This is a command line interface tool for interacting with the NZ Common Web Platform Dash API. The primary aim of this tool is to be supported easily on linux hosts without additional packages having being installed. While it could be implemented easily in many different frameworks/languages, it's written in Python for the simple reason that **most** linux servers support Python out of the box. This package uses no external libraries and only core Python modules.
 
 ## Support
 
