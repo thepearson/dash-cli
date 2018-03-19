@@ -16,7 +16,7 @@ with open("readme.md", "rb") as f:
 
 setup(
     name = "dash-cli",
-    packages = ["dash"],
+    packages = ["dash-cli"],
     entry_points = {
         "console_scripts": ['dash-cli = dash.cli:main']
         },
