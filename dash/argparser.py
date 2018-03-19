@@ -37,7 +37,7 @@ class ArgParser(object):
             description='CLI interface with CWP dash',
             usage='''cwp <command> [<sub_cmmand>|<args>]
 
-The most commonly used git commands are:
+Top level commands:
    stack            Perform actions on stacks
    snapshot         Perform snapshot actions
 ''')
