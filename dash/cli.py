@@ -4,7 +4,7 @@ __version__ = "0.1.0"
 config_file = '~/.dashconf'
 
 import sys
-import ConfigParser
+import configparser
 from os import path
 from os.path import expanduser
 from .argparser import ArgParser
@@ -12,12 +12,12 @@ from .argparser import ArgParser
 base_url = 'https://dash.cwp.govt.nz'
 
 def main():
-    print("Executing dash version %s." % __version__)
+    print("Executing dash version {version}.".format(version=__version__))
 
-    config = ConfigParser.SafeConfigParser()
+    config = configparser.SafeConfigParser()
 
     if not path.isfile(expanduser(config_file)):
-        print "Config file not found, lets get configured\n"
+        print("Config file not found, lets get configured\n")
         api_email = raw_input('CWP Email Address: ')
         api_token = raw_input('CWP API Token: ')
 
@@ -29,7 +29,7 @@ def main():
         with open(expanduser(config_file), 'w+b') as configfile:
             config.write(configfile)
 
-        print "You are now configured"
+        print("You are now configured")
         exit(0)
 
     config.read(expanduser(config_file))

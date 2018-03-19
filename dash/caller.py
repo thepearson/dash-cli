@@ -1,4 +1,4 @@
-import urllib2
+import urllib.request as urllib2
 from base64 import b64encode
 
 class Caller():
@@ -17,7 +17,8 @@ class Caller():
 
 
     def get_auth_header(self):
-        return b64encode('%s:%s' % (self.api_email, self.api_token))
+        string = '{user}:{password}'.format(user=self.api_email, password=self.api_token)
+        return b64encode(string.encode('ascii'))
 
 
     def get_request_headers(self):
@@ -25,18 +26,19 @@ class Caller():
             'Content-Type': 'application/vnd.api+json',
             'Accept': 'application/vnd.api+json',
             'X-Api-Version': '2.0',
-            'Authorization': "Basic %s" % self.get_auth_header()
+            'Authorization': "Basic {auth}".format(auth=self.get_auth_header())
         }
 
 
     def do_request(self, request_url, data = None, method = None):
-        req = urllib2.Request('%s%s' % (self.base_url, request_url), data, self.get_request_headers())
+        req = urllib2.Request('{base}{url}'.format(base=self.base_url, url=request_url), data, self.get_request_headers())
         if method:
             req.get_method = lambda: method
         try:
             response = urllib2.urlopen(req)
-        except urllib2.URLError:
-            print "Error opening ury %s" % request_url
+        except urllib2.URLError as e:
+            print(e)
+            print("Error opening url {url}".format(url=request_url))
 
         return response.read()
 

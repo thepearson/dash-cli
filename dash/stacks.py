@@ -6,4 +6,4 @@ class Stacks(Api):
         return self.do_request('/naut/projects')
 
     def get_stack(self, id):
-        return self.do_request('/naut/project/%s' % id)
+        return self.do_request('/naut/project/{id}'.format(id))
