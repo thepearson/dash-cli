@@ -10,7 +10,7 @@ Currently dash-cli supports <= Python 2.7. A version supporting Python >= 3 is a
 
 ```
 $ pip install dash-cli
-$ dash
+$ dash-cli
 
 Executing dash version 0.1.0.
 Config file not found, lets get configured
@@ -23,7 +23,7 @@ You are now configured
 ## Usage
 
 ```
-$ dash -h
+$ dash-cli -h
 
 Executing dash version 0.1.0.
 usage: cwp <command> [<sub_cmmand>|<args>]
@@ -44,10 +44,10 @@ optional arguments:
 ### Listing stacks
 ```
 # List all stacks/projects
-$ dash stacks
+$ dash-cli stacks
 
 # List info about a single stack/project
-$ dash stack --project=[project_id]
+$ dash-cli stack --project=[project_id]
 ```
 
 ### Snapshots
@@ -57,7 +57,7 @@ $ dash stack --project=[project_id]
 Lists all snapshots for a given stack.
 
 ```
-$ dash snapshot list [project_id]
+$ dash-cli snapshot list [project_id]
 Executing dash version 0.1.0.
 
 Retrieving snapshots for '[project_id]'
@@ -73,7 +73,7 @@ ID      TYPE    SIZE      STATUS    ENV   DATE
 Queues a snapshot creation for a given stack. The request creates a **transfer** which is essentially a queued job, the transfer ID returned can be used with `snapshot status` to query the state of the snapshot transfer.
 
 ```
-$ dash snapshot create [project_id] [snap_type] [snap_env]
+$ dash-cli snapshot create [project_id] [snap_type] [snap_env]
 Executing dash version 0.1.0.
 Snapshot for 'moeedgazette' queued
 TRANSFER ID	STATUS		PROJECT		TYPE		ENVIRONMENT
@@ -86,7 +86,7 @@ TRANSFER ID	STATUS		PROJECT		TYPE		ENVIRONMENT
 #### Query snapshot transfer status
 
 ```
-$ dash snapshot status [project_id] [transfer_id]
+$ dash-cli snapshot status [project_id] [transfer_id]
 Executing dash version 0.1.0.
 Snapshot for '[project_id]' queued
 TRANSFER ID	  STATUS		PROJECT
@@ -99,7 +99,7 @@ TRANSFER ID	  STATUS		PROJECT
 #### Delete snapshot
 
 ```
-$ dash snapshot delete [project_id] [snapshot_id]
+$ dash-cli snapshot delete [project_id] [snapshot_id]
 Executing dash version 0.1.0.
 Deleting '[project_id]' snapshot with the following ID: 12345
 OK.
@@ -108,7 +108,7 @@ OK.
 #### Download snapshot
 
 ```
-$ dash snapshot download [project_id] [snapshot_id]
+$ dash-cli snapshot download [project_id] [snapshot_id]
 Executing dash version 0.1.0.
 Downloading 'moeinside' snapshot with the following ID: 12345
 OK.

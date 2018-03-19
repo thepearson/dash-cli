@@ -16,9 +16,9 @@ with open("readme.md", "rb") as f:
 
 setup(
     name = "dash-cli",
-    packages = ["dash-cli"],
+    packages = ["dash"],
     entry_points = {
-        "console_scripts": ['dash = dash.cli:main']
+        "console_scripts": ['dash-cli = dash.cli:main']
         },
     version = version,
     description = "Python command line interface to CWP's Dash API.",
