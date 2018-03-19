@@ -22,6 +22,13 @@ CWP API Token:  [CWP_DASH_API_TOKEN]
 You are now configured
 ```
 
+## Roadmap
+
+* Locks
+* Git Fetches
+* Deployments
+* `sspak` integration
+
 ## Usage
 
 ```
