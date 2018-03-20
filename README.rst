@@ -10,17 +10,64 @@ Currently dash-cli supports <= Python 2.7. A version supporting Python >= 3 is a
 
 You'll need to navigate to ``https://dash.cwp.govt.nz/naut/profile`` and obtain an `API token` before continuing.
 
+### Using PIP - (Ubuntu based distros)
 ```
-$ pip install dash-cli
+$ sudo pip install dash-cli
+Collecting dash-cli
+  Downloading dash-cli-0.1.1.tar.gz
+Installing collected packages: dash-cli
+  Running setup.py install for dash-cli ... done
+Successfully installed dash-cli-0.1.1
+
 $ dash-cli
 
-Executing dash version 0.1.0.
+Executing dash version 0.1.1.
 Config file not found, lets get configured
 
 CWP Email Address: [CWP_DASH_EMAIL]
 CWP API Token:  [CWP_DASH_API_TOKEN]
 You are now configured
 ```
+
+### Using easy_install - (Centos/RHEL based distros)
+
+```
+$ sudo easy_install dash-cli
+
+Searching for dash-cli
+...
+Installed /usr/lib/python2.7/site-packages/dash_cli-0.1.1-py2.7.egg
+Processing dependencies for dash-cli
+Finished processing dependencies for dash-cli
+
+$ dash-cli
+
+Executing dash version 0.1.1.
+Config file not found, lets get configured
+
+CWP Email Address: [CWP_DASH_EMAIL]
+CWP API Token:  [CWP_DASH_API_TOKEN]
+You are now configured
+```
+
+## Changelog
+```
+0.1.1:    21 March 2018
+--------------------------
+          Packaging changes
+          Documentation updates
+
+0.1.0:    19 March 2018
+--------------------------
+          Initial release
+```
+
+## Roadmap
+
+* Locks
+* Git Fetches
+* Deployments
+* `sspak` integration
 
 ## Usage
 

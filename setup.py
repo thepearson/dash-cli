@@ -11,12 +11,12 @@ version = re.search(
     re.M
     ).group(1)
 
-with open("readme.md", "rb") as f:
+with open("README.rst", "rb") as f:
     long_descr = f.read().decode("utf-8")
 
 setup(
     name = "dash-cli",
-    packages = ["dash-cli"],
+    packages = ["dash"],
     entry_points = {
         "console_scripts": ['dash-cli = dash.cli:main']
         },
