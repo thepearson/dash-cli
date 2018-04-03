@@ -47,8 +47,12 @@ class Snapshots(Api):
         self.download_request(download_link, "%s-%s-%s-snapshot.sspak" % (project, snapshot['data']['relationships']['source']['data'][0]['id'], snapshot['data']['attributes']['mode']))
 
     def easy_snapshot(self, project, type, env, filename = 'snapshot.spak'):
+        print "Create snapshot request"
         transfer = self.create_snapshot(project, type, env)
         snapshot_info = self.check_transfer_complete(project, transfer['data']['id'])
-        snapshot = self.get_snapshot(project, snapshot_info['data']['id'])
-        download_link = snapshot['data']['links']['download_link']
-        download_file(download_link, filename)
+
+        print "Downloading snapshot..."
+        self.download_snapshot(project, snapshot_info['data']['id'])
+
+        print "Cleaning up API snapshots"
+        self.delete_snapshot(project, snapshot_info['data']['id'])

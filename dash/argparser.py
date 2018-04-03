@@ -113,6 +113,9 @@ Top level commands:
         if args.sub_command == 'download':
             getattr(self, 'download_snapshot')()
 
+        if args.sub_command == 'simple':
+            getattr(self, 'simple_snapshot')()
+
 
     def transfer_status(self):
         parser = argparse.ArgumentParser(
@@ -132,6 +135,25 @@ Top level commands:
         print "Snapshot for '%s' queued" % args.project
         print "%s\t%s\t\t%s\n---" % ('TRANSFER ID', 'STATUS', 'PROJECT')
         print "%s\t\t%s\t\t%s\n" % (snapshot_data['data']['id'], snapshot_data['data']['attributes']['status'], args.project)
+
+
+    def simple_snapshot(self):
+        parser = argparse.ArgumentParser(
+            description='Queues a new snapshot creation')
+
+        parser.add_argument('project', help='Specify the project')
+        parser.add_argument('snap_type', nargs='?', default='all', help='What type of snapshot to create, db|assets|all')
+        parser.add_argument('snap_env', nargs='?', default='uat', help='What environement to use. uat|prod')
+
+        args = parser.parse_args(sys.argv[3:])
+
+        api = get_api('snapshots', self.config)
+        if not args.project:
+            print "Please specify project"
+            exit(1)
+
+        snapshot_data = api.easy_snapshot(args.project, args.snap_type, args.snap_env)
+        print "OK."
 
 
     def download_snapshot(self):
