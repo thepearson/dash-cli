@@ -40,6 +40,7 @@ class ArgParser(object):
 Top level commands:
    stack            Perform actions on stacks
    snapshot         Perform snapshot actions
+   git              Perform git actions
    config           Configure this
 ''')
         parser.add_argument('command', help='Subcommand to run')
@@ -115,6 +116,60 @@ Top level commands:
 
         if args.sub_command == 'simple':
             getattr(self, 'simple_snapshot')()
+
+
+    def git(self):
+        parser = argparse.ArgumentParser(
+            description='Perform snapshot actions')
+
+        parser.add_argument('sub_command', help='Specify a sub command')
+        args = parser.parse_args(sys.argv[2:3])
+
+        if args.sub_command == 'fetch':
+            getattr(self, 'git_fetch')()
+
+        if args.sub_command == 'status':
+            getattr(self, 'git_status')()
+
+
+    def git_status(self):
+        parser = argparse.ArgumentParser(
+            description='Check on the status for a git fetch')
+
+        parser.add_argument('project', help='Specify the project')
+        parser.add_argument('fetch_id', help='The ID of the git fetch to check on, this is output when queuing a new git fetch')
+
+        args = parser.parse_args(sys.argv[3:])
+
+        api = get_api('git_fetches', self.config)
+        if not args.project:
+            print "Please specify project"
+            exit(1)
+
+        fetches_data = api.get_git_fetch(args.project, args.fetch_id)
+        print "Git fetch for '%s' queued" % args.project
+        print "%s\t%s\t\t%s\n---" % ('FETCH ID', 'STATUS', 'PROJECT')
+        print "%s\t\t%s\t\t%s\n" % (fetches_data['data']['id'], fetches_data['data']['attributes']['status'], args.project)
+
+
+    def git_fetch(self):
+        parser = argparse.ArgumentParser(
+            description='Create a git fetch on the repo for this project')
+
+        parser.add_argument('project', help='Specify the project')
+
+        args = parser.parse_args(sys.argv[3:])
+
+        api = get_api('git_fetches', self.config)
+        if not args.project:
+            print "Please specify project"
+            exit(1)
+
+        fetches_data = api.create_git_fetch(args.project)
+        print "Git fetch for '%s' queued" % args.project
+        print "%s\t%s\t\t%s\n---" % ('FETCH ID', 'STATUS', 'PROJECT')
+        print "%s\t\t%s\t\t%s\n" % (fetches_data['data']['id'], fetches_data['data']['attributes']['status'], args.project)
+
 
 
     def transfer_status(self):
