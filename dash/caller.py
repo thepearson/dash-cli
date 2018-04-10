@@ -40,6 +40,17 @@ class Caller():
 
         return response.read()
 
+    def download_stream(self, src, dest):
+        req = urllib2.Request(src, None, self.get_request_headers())
+        response = urllib2.urlopen(req)
+        CHUNK = 16 * 1024
+        with open(dest, 'wb') as f:
+            while True:
+                chunk = response.read(CHUNK)
+                if not chunk:
+                    break
+                f.write(chunk)
+
 
     def download_request(self, src, dest):
         with open(dest, 'wb') as f:

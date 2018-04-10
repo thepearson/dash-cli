@@ -19,5 +19,9 @@ class Api():
         return self.serializer.unserialize(self.caller.do_request(url, data, method))
 
 
-    def download_request(self, url, dest):
-        return self.caller.download_request(url, dest)
+    def download_request(self, url, dest, direct = False):
+        if direct is True:
+            return self.caller.download_request(url, dest)
+        else:
+            return self.caller.download_stream(url, dest)
+

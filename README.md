@@ -52,6 +52,10 @@ You are now configured
 
 ## Changelog
 ```
+0.1.3:    10  April 2018
+--------------------------
+          Support for large file downloads
+
 0.1.2:    3  April 2018
 --------------------------
           Simple snapshots
