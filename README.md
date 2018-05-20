@@ -52,6 +52,10 @@ You are now configured
 
 ## Changelog
 ```
+0.1.4:    21 May 2018
+--------------------------
+          Support for snapshots failing and timeouts during simple mode
+
 0.1.3:    10  April 2018
 --------------------------
           Support for large file downloads
@@ -177,7 +181,7 @@ OK.
 Request a snapshot, download it, then delete it with one command, useful for automated jobs.
 
 ```
-$ dash-cli snapshot create [project_id] [snap_type] [snap_env]
+$ dash-cli snapshot simple [project_id] [snap_type] [snap_env]
 Executing dash version 0.1.2.
 Creating snapshot request
 Waiting for [project_id] snapshot to complete... elapsed x seconds

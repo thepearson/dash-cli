@@ -52,6 +52,18 @@ You are now configured
 
 ## Changelog
 ```
+0.1.4:    21 May 2018
+--------------------------
+          Support for snapshots failing and timeouts during simple mode
+
+0.1.3:    10  April 2018
+--------------------------
+          Support for large file downloads
+
+0.1.2:    3  April 2018
+--------------------------
+          Simple snapshots
+
 0.1.1:    21 March 2018
 --------------------------
           Packaging changes
@@ -74,7 +86,7 @@ You are now configured
 ```
 $ dash-cli -h
 
-Executing dash version 0.1.0.
+Executing dash version 0.1.2.
 usage: cwp <command> [<sub_cmmand>|<args>]
 
 Top level commands:
@@ -107,7 +119,7 @@ Lists all snapshots for a given stack.
 
 ```
 $ dash-cli snapshot list [project_id]
-Executing dash version 0.1.0.
+Executing dash version 0.1.2.
 
 Retrieving snapshots for '[project_id]'
 
@@ -123,7 +135,7 @@ Queues a snapshot creation for a given stack. The request creates a **transfer**
 
 ```
 $ dash-cli snapshot create [project_id] [snap_type] [snap_env]
-Executing dash version 0.1.0.
+Executing dash version 0.1.2.
 Snapshot for 'moeedgazette' queued
 TRANSFER ID	STATUS		PROJECT		TYPE		ENVIRONMENT
 ---
@@ -136,7 +148,7 @@ TRANSFER ID	STATUS		PROJECT		TYPE		ENVIRONMENT
 
 ```
 $ dash-cli snapshot status [project_id] [transfer_id]
-Executing dash version 0.1.0.
+Executing dash version 0.1.2.
 Snapshot for '[project_id]' queued
 TRANSFER ID	  STATUS		PROJECT
 ---
@@ -158,8 +170,25 @@ OK.
 
 ```
 $ dash-cli snapshot download [project_id] [snapshot_id]
-Executing dash version 0.1.0.
+Executing dash version 0.1.2.
 Downloading 'moeinside' snapshot with the following ID: 12345
+OK.
+
+```
+
+#### Simple snapshot
+
+Request a snapshot, download it, then delete it with one command, useful for automated jobs.
+
+```
+$ dash-cli snapshot simple [project_id] [snap_type] [snap_env]
+Executing dash version 0.1.2.
+Creating snapshot request
+Waiting for [project_id] snapshot to complete... elapsed x seconds
+Waiting for [project_id] snapshot to complete... elapsed x seconds
+Waiting for [project_id] snapshot to complete... elapsed x seconds
+Downloading snapshot...
+Cleaning up API snapshots
 OK.
 
 ```
