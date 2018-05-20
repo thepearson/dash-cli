@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """dash.cli: provides entry point main()."""
-__version__ = "0.1.3"
+__version__ = "0.1.4"
 config_file = '~/.dashconf'
 
 import sys
