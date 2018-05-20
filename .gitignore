@@ -3,3 +3,6 @@
 *.pyc
 
 .idea
+
+dash_cli.egg-info/
+dist/

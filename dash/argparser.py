@@ -26,10 +26,13 @@ def get_api(type, config):
     if type == "snapshots":
         return Snapshots(caller, serializer)
 
+    if type == "deployments":
+        return Deployments(caller, serializer)
+
 
 class ArgParser(object):
 
-    conofig = None
+    config = None
     def __init__(self, config):
         self.config = config
 

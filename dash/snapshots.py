@@ -1,7 +1,12 @@
 from time import sleep, time
 from .api import Api
 
+class SnapshotsError(Exception):
+    '''raise this when there's an error with a snapshot'''
+
 class Snapshots(Api):
+
+    snapshot_timeout = 10800 # 3 hours
 
     delay = 10
 
@@ -36,8 +41,15 @@ class Snapshots(Api):
             transfer = self.get_snapshot_transfer(project, transfer_id)
             if transfer['data']['attributes']['status'] == 'Finished':
                 complete = True
+            elif transfer['data']['attributes']['status'] == 'Failed':
+                raise SnapshotsError("Snapshot failed")
             else:
-                print "Waiting for %s snapshot to complete... elapsed %d seconds" % (project, time() - start_time)
+                elapsed_time = time() - start_time
+                if elapsed_time > self.snapshot_timeout:
+                    # Timeout if this takes too long
+                    raise SnapshotsError("Snapshot timeout")
+
+                print "Waiting for %s snapshot to complete... elapsed %d seconds" % (project, elapsed_time)
                 sleep(self.delay)
         return transfer['data']['relationships']['snapshot']
 
@@ -49,7 +61,12 @@ class Snapshots(Api):
     def easy_snapshot(self, project, type, env, filename = 'snapshot.spak'):
         print "Create snapshot request"
         transfer = self.create_snapshot(project, type, env)
-        snapshot_info = self.check_transfer_complete(project, transfer['data']['id'])
+
+        try:
+            snapshot_info = self.check_transfer_complete(project, transfer['data']['id'])
+        except SnapshotsError:
+            print "Snapshot failed"
+            raise
 
         print "Downloading snapshot..."
         self.download_snapshot(project, snapshot_info['data']['id'])
