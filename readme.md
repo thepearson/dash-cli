@@ -8,7 +8,7 @@ Currently dash-cli supports <= Python 2.7. A version supporting Python >= 3 is a
 
 ## Installation
 
-You'll need to navigate to ``https://dash.cwp.govt.nz/naut/profile`` and obtain an `API token` before continuing.
+You'll need to navigate to https://dash.cwp.govt.nz/naut/profile and obtain an `API token` before continuing.
 
 ```
 $ sudo pip install dash-cli
